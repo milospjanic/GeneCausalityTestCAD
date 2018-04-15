@@ -120,11 +120,13 @@ while read -r a b c; do
         awk '{$1=$2=$3=$4=$5=$6=$7=$8=$9=""; print $0}' SNP.txt > SNP.txt.cut 
         #cat SNP.txt.cut
 
-	sed -i "s/"$EFFECT"/1/g" SNP.txt.cut
-        sed -i -E "s/[ATGC]/0/g" SNP.txt.cut
-        #cat SNP.txt.cut
+	grep -v -P "[ATCG]{3,}" SNP.txt.cut > SNP.txt.cut2
+	sed -i "s/"$EFFECT"/1/g" SNP.txt.cut2
+        sed -i -E "s/[ATGC]/0/g" SNP.txt.cut2
+        
+#cat SNP.txt.cut
 
-        cat HEADER.txt.cut SNP.txt.cut > GENOTYPES.$a.txt
+        cat HEADER.txt.cut SNP.txt.cut2 > GENOTYPES.$a.txt
 	#cat GENOTYPES.$a.txt
 
 done < $CC4D/SNP_effect.alele_pval.threshold.txt
@@ -133,7 +135,8 @@ cat GENOTYPES.rs* > GENOTYPES.combined
 
 rm GENOTYPES.rs*
 
-awk 'NR%2==0' GENOTYPES.combined > GENOTYPES.combined.even
+grep -v "1020301 102901" GENOTYPES.combined > GENOTYPES.combined.even
+#awk 'NR%2==0' GENOTYPES.combined > GENOTYPES.combined.even
 
 sed -i 's/11/2/g' GENOTYPES.combined.even
 sed -i -E 's/(10|01)/1/g' GENOTYPES.combined.even
@@ -238,7 +241,5 @@ dev.off()
 
 chmod 775 script.R
 ./script.R
-
-
 
 
