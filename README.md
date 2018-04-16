@@ -55,7 +55,6 @@ Running the script. Place gene name in a file gene.txt, and provide gene.txt, ch
 
 If gene is not causal for the trait (CAD) it will not show correlation with the increased number of risk SNPs:
 
-
-![alt text](
+![alt text](https://github.com/milospjanic/GeneCausalityTestCAD/blob/master/test24.png)
 
  
