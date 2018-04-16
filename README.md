@@ -63,3 +63,5 @@ If a gene is causal for the trait and it's increased expression is positively co
 
 On the other hand, gene might be causal and showing negative correlation with the trait:
 
+![alt text](https://github.com/milospjanic/GeneCausalityTestCAD/blob/master/test29.png)
+
