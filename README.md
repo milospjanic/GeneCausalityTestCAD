@@ -27,7 +27,7 @@ rs11532052	T	4.91e-06
 rs11226029	G	3.52e-10
 rs11226031	C	2.02e-06
 ...
-<pre>
+</pre>
 
 In the HCASMC_expr folder, file **TABLE.RPM.txt** contains per-gene RNAseq read counts for each HCASMC sample. In the HCASMC_genotypes folder, file GENOTYPES.combined.even.HEADER contains risk SNP matrix with counts representing 0, 1 or 2 risk SNPs:
 
