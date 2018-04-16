@@ -57,4 +57,9 @@ If gene is not causal for the trait (CAD) it will not show correlation with the 
 
 ![alt text](https://github.com/milospjanic/GeneCausalityTestCAD/blob/master/test24.png)
 
- 
+If a gene is causal for the trait and it's increased expression is positively corelated with the trait there should be a positive correlation on the graph:
+
+![alt text](https://github.com/milospjanic/GeneCausalityTestCAD/blob/master/test28.png)
+
+On the other hand, gene might be causal and showing negative correlation with the trait:
+
