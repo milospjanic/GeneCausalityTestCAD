@@ -50,7 +50,7 @@ write.table(id_merge, file=\"id_merge.txt\", sep = \"\t\", quote =F, col.names=F
 chmod 775 script.r
 ./script.r
 
-grep $GENENAME id_merge.txt > gene_id_merge
+grep "	$GENENAME	" id_merge.txt > gene_id_merge
 
 START="$(awk 'BEGIN{min=100000000000000000}{if($3<min){min=$3;out=$3}}END{print out}' gene_id_merge)"
 END="$(awk 'BEGIN{max=0}{if($4>max){max=$4;out=$4}}END{print out}' gene_id_merge)"
@@ -228,6 +228,7 @@ expr<-read.table(\"TABLE.RPM.txt\", row.names=1, check.names=F)
 
 data.merge<-merge(x = data.tr, y = expr, by = \"row.names\", all = F)
 
+write.table(file=\"data.merge.table.txt\", data.merge)
 pdf(\"output.pdf\")
 ggplot(data.merge, aes(Total, V2, color = Total)) +
   geom_point(shape = 16, size = 5, show.legend = FALSE, alpha = .4) +
