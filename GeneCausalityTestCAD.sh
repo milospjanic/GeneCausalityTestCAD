@@ -235,7 +235,9 @@ ggplot(data.merge, aes(Total, V2, color = Total)) +
   theme_minimal() +
   scale_color_gradient(low = \"#0091ff\", high = \"#f0650e\") +
   theme(axis.text=element_text(size=24),axis.title=element_text(size=26))+ labs(title = \"$GENENAME Causality Test\", x=\"CAD Risk SNPs Total\", y=\"$GENENAME expression\") + theme(plot.title = element_text(size = rel(2)))+
-  geom_smooth(method=lm)
+  geom_smooth(method=lm)+
+  scale_y_continuous(expand = c(0, 0), limits = c(0, max(data.merge\$V2)+max(data.merge\$V2)/5))+
+  annotate(x=min(data.merge\$Total)+(max(data.merge\$Total)-min(data.merge\$Total))/5, y=max(data.merge\$V2)+(max(data.merge\$V2)-min(data.merge\$V2))/6,label=paste(\"R = \", round(cor (data.merge\$V2,data.merge\$Total),2)),geom=\"text\", size=8, col=\"darkred\")
 
 dev.off()
 "> script.R
