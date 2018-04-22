@@ -27,7 +27,7 @@ cd $CC4D
 
 if [ ! -f $NELSON ]
 then
-wget 
+wget https://www.dropbox.com/s/hjmkk5rjj0tfswy/UKBB.GWAS1KG.EXOME.CAD.SOFT.META.PublicRelease.300517.txt?dl=0
 echo "Unpacking CARDIOGRAM plus C4D data, Nelson et al."
 unzip ...
 fi
