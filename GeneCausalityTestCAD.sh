@@ -113,8 +113,8 @@ while read -r a b c; do
         #echo $EFFECT
 	
 	sed -i "s/0|0/$REF$REF/g" SNP.txt
-	sed -i -E "s/0\|[1|2]/$REF$ALT/g" SNP.txt
-        sed -i -E "s/[1|2]\|0/$REF$ALT/g" SNP.txt
+	sed -i -E "s/0\|(1|2)/$REF$ALT/g" SNP.txt
+        sed -i -E "s/(1|2)\|0/$REF$ALT/g" SNP.txt
         sed -i "s/1|1/$ALT$ALT/g" SNP.txt
 	#cat SNP.txt
         
