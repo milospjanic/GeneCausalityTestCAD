@@ -99,7 +99,8 @@ while read -r a b c; do
         grep "$a	" phased_and_imputed.chr$CHR.vcf > SNP.txt
 	#cat SNP.txt
         #clean genotype files
-        sed -i -E 's/:[0-9.]*:[0-9.]*,[0-9.]*,[0-9.]*//g' SNP.txt 
+        sed -i -E 's/:[0-9.,:]*//g' SNP.txt
+	#sed -i -E 's/:[0-9.]*:[0-9.]*,[0-9.]*,[0-9.]*//g' SNP.txt 
 	#cat SNP.txt
        
 #grab reference and alternative aleles
@@ -112,19 +113,19 @@ while read -r a b c; do
         #echo $EFFECT
 	
 	sed -i "s/0|0/$REF$REF/g" SNP.txt
-        sed -i "s/0|1/$REF$ALT/g" SNP.txt
-        sed -i "s/1|0/$REF$ALT/g" SNP.txt
+	sed -i -E "s/0\|[1|2]/$REF$ALT/g" SNP.txt
+        sed -i -E "s/[1|2]\|0/$REF$ALT/g" SNP.txt
         sed -i "s/1|1/$ALT$ALT/g" SNP.txt
 	#cat SNP.txt
         
         awk '{$1=$2=$3=$4=$5=$6=$7=$8=$9=""; print $0}' SNP.txt > SNP.txt.cut 
         #cat SNP.txt.cut
 
-	grep -v -P "[ATCG]{3,}" SNP.txt.cut > SNP.txt.cut2
+	grep -v -P "[ATCG,]{3,}" SNP.txt.cut > SNP.txt.cut2
 	sed -i "s/"$EFFECT"/1/g" SNP.txt.cut2
         sed -i -E "s/[ATGC]/0/g" SNP.txt.cut2
         
-#cat SNP.txt.cut
+#cat SNP.txt.cut2
 
         cat HEADER.txt.cut SNP.txt.cut2 > GENOTYPES.$a.txt
 	#cat GENOTYPES.$a.txt
@@ -244,5 +245,4 @@ dev.off()
 
 chmod 775 script.R
 ./script.R
-
 
